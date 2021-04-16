@@ -3,15 +3,21 @@
 section
 	position: relative
 
+h2, .h2
+	font-size: rem(50px)
+	line-height: 1.44
+	font-family: 'Roboto Slab'
+	font-weight: bold
+
 .container
-	margin-left: 120px
-	margin-right: 120px
+	margin-left: rem(120px)
+	margin-right: rem(120px)
 
 .s-main-window
 	height: 100vh
 
 .main-window-bg
-	position: absolute
+	position: fixed
 	top: 0
 	left: 0
 	width: 100%
@@ -21,18 +27,53 @@ section
 		width: 100%
 		height: 100%
 		object-fit: cover
+		// filter: blur(var(--main-window-blur))
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-image: url(../images/dist/pattern-grid.png)
+		background-size: cover
+		background-repeat: no-repeat
+		background-position: top 0 left 50%
+		z-index: 2
 
-.main-window-pattern
+.blured-video
 	position: absolute
-	z-index: -1
 	top: 0
 	left: 0
-	width: 100%
-	height: 100%
-	background-image: url(../images/dist/pattern-grid.png)
-	background-size: cover
-	background-repeat: no-repeat
-	background-position: top 0 left 50%
+	opacity: 0
+	z-index: 1
+	&.full-blured
+		opacity: 1 !important
+
+// .pattern-bg
+// 	position: absolute
+// 	top: 0
+// 	left: 0
+// 	width: 100%
+// 	height: 100%
+// 	z-index: 1 
+// 	background-image: url(../images/dist/pattern-overlay.jpg)
+// 	background-size: cover
+// 	background-repeat: no-repeat
+// 	background-position: top 0 left 50%
+// 	opacity: 0
+
+// .main-window-pattern
+// 	position: absolute
+// 	z-index: -1
+// 	top: 0
+// 	left: 0
+// 	width: 100%
+// 	height: 100%
+// 	background-image: url(../images/dist/pattern-grid.png)
+// 	background-size: cover
+// 	background-repeat: no-repeat
+// 	background-position: top 0 left 50%
 
 .main-window-content
 	position: relative
@@ -43,23 +84,35 @@ section
 		display: flex
 		align-items: flex-end
 
-.header-right
-	height: 331px
+.main-menu
+	height: rem(331px)
 	position: relative
 	width: 100%
 	display: flex
-	align-items: flex-end
 	flex-direction: column
+	align-items: flex-end
 	flex-shrink: 0
-	padding: 55px 0 85px
 	&:after
 		content: ''
 		position: absolute
-		top: 0
+		top: -1px
 		width: 100%
 		left: 0
 		height: 1px
 		background-color: #fff
+
+.main-menu-sticky
+	display: flex
+	flex-direction: column
+	align-items: flex-end
+	flex-grow: 1
+	padding: rem(55px) 0 rem(85px)
+	&.fixed
+		top: 0
+		position: fixed
+		height: rem(331px)
+		.header-callback
+			transform: translateY(-75px)
 
 .menu
 	display: flex
@@ -80,25 +133,25 @@ section
 
 .s-logo
 	z-index: 1
-	height: 100vh
 	.container
 		position: relative
 		height: 100%
 
 .header-callback
-	margin-top: 40px
+	margin-top: rem(40px)
+	transition: transform .5s ease
 
 .btn
 	text-decoration: none !important
 	outline: none !important
-	height: 56px
+	height: rem(56px)
 	display: inline-flex
 	align-items: center
 	justify-content: center
 	white-space: nowrap
-	padding: 0 20px
+	padding: 0 rem(20px)
 	background-color: #fff
-	border-radius: 28px
+	border-radius: rem(28px)
 	color: #000 !important
 	cursor: pointer
 	font-family: $gotham
@@ -108,32 +161,131 @@ section
 		img
 			transform: translateX(5px)
 	img
-		width: 15.84px
+		width: rem(15.84px)
 		flex-shrink: 0
-		margin-left: 22px
+		margin-left: rem(22px)
 		+tr
 		transition-delay: .2s
 
 .logo-row
-	padding-top: 55px
+	padding-top: rem(55px)
 	height: 100vh
 	display: flex
 	align-items: flex-end
-	padding-bottom: 80px
+	padding-bottom: rem(80px)
 
 .logo-block
 	position: fixed
-	left: 120px
-	bottom: 80px
+	left: rem(120px)
+	bottom: rem(80px)
 	display: flex
 	align-items: flex-end
 	justify-content: flex-start
 	.logo
-		transform: scale(.208335)
+		// transform: scale(0.243056)
+		width: 350px
 		transform-origin: left bottom
+		max-width: 100%
 	img
 		flex-shrink: 0
-		width: calc(100vw - 240px)
-		transform: translateX(-57px)
+		// width: calc(100vw - #{rem(240px)})
+		width: 100%
+		// transform: translateX(#{rem(-57px)})
+		transform: translateX(#{rem(-10px)})
 	&.no-fixed
 		position: static
+
+.s-about
+	padding-top: rem(42px)
+	padding-bottom: rem(156px)
+	&.animate
+		.about-title
+			&:after
+				transform: scaleX(1)
+			.h2
+				span
+					span
+						transform: translateY(0)
+		.about-text
+			p
+				transform: translateY(0)
+				opacity: 1
+			&:after
+				transform: scaleX(1)
+
+.about-title
+	padding-top: rem(56px)
+	position: relative
+	margin-bottom: rem(232px)
+	position: relative
+	z-index: 1
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 1px
+		background-color: #fff
+		transition: transform .7s ease
+		transform-origin: left top
+		transform: scaleX(0)
+	.h2
+		max-width: rem(604px)
+		margin: 0
+		span
+			display: block
+			white-space: nowrap
+			overflow: hidden
+			span
+				display: block
+				transform: translateY(100%)
+				transition: transform .7s ease-in-out
+				transition-delay: .15s
+
+.about-text
+	position: relative
+	z-index: 1
+	width: 56.25%
+	margin-left: auto
+	display: flex
+	padding: 0
+	position: relative
+	padding-top: rem(40px)
+	justify-content: space-between
+	font-size: 24px
+	line-height: 1.46
+	transition: transform .1s ease
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 1px
+		background-color: #fff
+		transition: transform .7s ease
+		transform-origin: left top
+		transform: scaleX(0)
+		transition-delay: .3s
+	p
+		width: calc(50% - #{rem(45px)})
+		margin: 0
+		transform: translateY(#{rem(40px)})
+		opacity: 0
+		transition: all .7s ease
+		transition-delay: .4s
+
+.about-date
+	position: absolute
+	line-height: 1
+	font-size: rem(640px)
+	letter-spacing: 0.01em
+	opacity: 0.3
+	color: transparent
+	-webkit-text-stroke: 1px #fff
+	font-weight: bold
+	top: rem(100px)
+	left: rem(-100px)
+	z-index: 0
+	user-select: none

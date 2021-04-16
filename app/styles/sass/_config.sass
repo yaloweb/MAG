@@ -4,7 +4,7 @@ $accent: orange // Accent Color
 $fontsize: 16px // Body Font Size
 $textcolor: #333 // Text Color
 $lineheight: 1.375 // Document Line Height
-$userfont: Roboto Slab, sans-serif // User Font Family
+$userfont: Roboto Slab // User Font Family
 $systemfont: -apple-system, BlinkMacSystemFont, Arial, sans-serif // System Font Family
 
 $gotham: Gotham Pro, sans-serif
@@ -39,6 +39,9 @@ $gutter: $grid-gutter-width
 @mixin tr()
 	transition: all .4s ease
 
+@function rem($size)
+  @return $size / $fontsize * 1rem
+
 // GENERAL DOCUMENT STYLES
 
 ::placeholder
@@ -63,5 +66,5 @@ body
 	min-width: 320px
 	position: relative
 	overflow-x: hidden
-	background-color: #000
-	height: 5000px
+	color: #fff
+	height: 10000px
